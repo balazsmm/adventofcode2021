@@ -1,8 +1,8 @@
 with open("2021_day2_input.txt", "r", encoding="utf-8") as inst_file:
 	instructions = [inst_line.strip().split(" ") for inst_line in inst_file.readlines()]
 
-forward = sum(int(il[1]) if il[0] == "forward" else 0 for il in instructions)
-depth = sum(0 if il[0] == "forward" else (int(il[1]) if il[0] == "down" else -int(il[1])) for il in instructions)
+forward = sum(int(il[1]) for il in instructions if il[0] == "forward")
+depth = sum(int(il[1]) if il[0] == "down" else -int(il[1]) for il in instructions if il[0] != "forward")
 
 print("Horizontal: {}, depth: {}, multiplied: {}".format(forward, depth, forward*depth))
 
