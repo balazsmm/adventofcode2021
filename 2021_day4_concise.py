@@ -18,7 +18,7 @@ def full_column_match(table, lot):
 
 def check_all_bingos(drawn_numbers, tables, firstmatch=None):
 	last_drawn_lot, last_checked_table = [], []
-	bingo_tables = []
+	bingo_tables, table_count = [], len(tables)
 	for draw_lot_range in range(1, len(drawn_numbers)):
 		drawn_lot = drawn_numbers[:draw_lot_range]
 		for checked_table in tables:
@@ -28,8 +28,8 @@ def check_all_bingos(drawn_numbers, tables, firstmatch=None):
 				if checked_table not in bingo_tables:
 					bingo_tables.append(checked_table)
 					last_drawn_lot, last_checked_table = drawn_lot, checked_table
-				
-	return last_drawn_lot, last_checked_table
+				if len(bingo_tables) == table_count:
+					return last_drawn_lot, last_checked_table
 
 
 def score(lot, tbl):
