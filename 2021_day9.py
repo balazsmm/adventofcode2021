@@ -7,9 +7,7 @@ with open("2021_day9_input.txt", "r", encoding="utf-8") as ifile:
 class Slices:
 	def __init__(self, heightmap):
 		self.heightmap = heightmap
-		self.east_range = range(len(heightmap[0]))
-		self.south_range = range(len(heightmap))
-		self.sum_risk_levels = 0
+		self.east_range, self.south_range = range(len(heightmap[0])), range(len(heightmap))
 		self.iterate_and_sum_elements()
 		self.flowmap_flow()
 	
@@ -21,6 +19,7 @@ class Slices:
 		return [self.heightmap[line][elem] for line in checked_south for elem in checked_east]
 	
 	def iterate_and_sum_elements(self):
+		self.sum_risk_levels = 0
 		for ypos, ln in enumerate(self.heightmap):
 			for xpos, pnt in enumerate(ln):
 				if self.heightmap[ypos][xpos] == min(self.slice(xpos, ypos)):
