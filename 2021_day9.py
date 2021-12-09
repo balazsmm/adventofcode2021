@@ -19,12 +19,12 @@ class Slices:
 		return [self.heightmap[line][elem] for line in checked_south for elem in checked_east]
 	
 	def iterate_and_sum_elements(self):
-		self.sum_risk_levels = 0
+		sum_risk_levels = 0
 		for ypos, ln in enumerate(self.heightmap):
 			for xpos, pnt in enumerate(ln):
 				if self.heightmap[ypos][xpos] == min(self.slice(xpos, ypos)):
-					self.sum_risk_levels += self.heightmap[ypos][xpos]+1
-		print("Sum of risk levels: {}".format(self.sum_risk_levels))
+					sum_risk_levels += self.heightmap[ypos][xpos]+1
+		print("Sum of risk levels: {}".format(sum_risk_levels))
 	
 	def flowmap_flow(self):
 		self.flowmap =[[0 if self.heightmap[ypos][xpos] == 9 else 1 for xpos, elem in enumerate(line)] for ypos, line in enumerate(self.heightmap)]
